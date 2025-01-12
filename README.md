@@ -1,2 +1,2 @@
 # IASC-2P02
-repositery for iasc course
+IASC 2P02 - Shayan Owji

@@ -1,4 +1,12 @@
 import * as THREE from "three"
+import {OrbitControls} from "OrbitControls"
+import * as dat from "lil-gui"
+/* Setup*/
+const sizes = {
+    width: window.innerWidth,
+    height: window.innerHeight,
+    aspectRatio:window.innerWidth / window.innerHeight
+}
 /********
  * Scene*
  */
@@ -9,7 +17,7 @@ const scene = new THREE.Scene()
 scene.background = new THREE.Color('pink')
 //camera
 const camera = new THREE.PerspectiveCamera(
-    75,window.innerWidth / window.innerHeight,0.1,
+    75,sizes.aspectRatio,0.1,
     100
 )
 scene.add(camera)
@@ -20,7 +28,18 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     antialias: true
 })
-renderer.setSize(window.innerWidth,window.innerHeight)
+renderer.setSize(sizes.width,sizes.height)
+//controls
+const controls = new OrbitControls(camera,canvas)
+controls.enableDamping = true
+
+//update controls
+controls.update()
+
+
+
+
+
 //Meshe
 
 //testSphere
@@ -30,6 +49,9 @@ const testSphere = new THREE.Mesh(sphereGeometry,sphereMaterial)
 
 scene.add(testSphere)
 testSphere.position.set(0, 1, -5)
+
+//UI//
+const ui = new dat.GUI()
 
 
 //animation loop

@@ -10,6 +10,26 @@ const sizes = {
 /********
  * Scene*
  */
+
+
+//Resizing//
+window.addEventListener('resize',()=>{
+    //update sizes
+    sizes.width = window.innerWidth
+    sizes.height = window.innerHeight
+    sizes.aspectRatio = window.innerWidth / window.innerHeight
+    //update camera
+    camera.aspect = sizes.aspectRatio
+    camera.updateProjectionMatrix()
+    //update renderer
+    renderer.setSize(sizes.width, sizes.height)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,2))
+
+
+
+})
+
+
 //canvas
 const canvas = document.querySelector('.webgl')
 //scene
